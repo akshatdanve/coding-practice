@@ -1,3 +1,4 @@
+//bfs approach
 class keysAndRooms {
     public boolean canVisitAllRooms(List<List<Integer>> rooms) {
         int cnt=0;
@@ -28,5 +29,30 @@ class keysAndRooms {
             return true;
         }
         return false;
+    }
+}
+
+
+//dfs approach
+class keysAndRooms {
+    public boolean canVisitAllRooms(List<List<Integer>> rooms) {
+        int n = rooms.size();
+        boolean[] vis = new boolean[n];
+        return dfs(0, rooms, vis);
+    }
+    boolean dfs(int node, List<List<Integer>> rooms, boolean[] vis){
+        vis[node]=true;
+        for(int r : rooms.get(node)){
+            if(!vis[r]){
+                dfs(r, rooms, vis);
+            }
+
+        }
+        for(boolean x : vis){
+            if(!x){
+                return false;
+            }
+        }
+        return true;
     }
 }
